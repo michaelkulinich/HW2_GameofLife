@@ -26,8 +26,14 @@ int main(int argc, char const *argv[]) {
     int rowDimension;
     cin >> rowDimension;
     cout << "Enter Column Dimension" << endl;
+    int columnDimension;
     cin >> columnDimension;
     cout << "Enter initial population density decimal (0,1]"
+    double popDensity;
+    cin >> popDensity;
+    double randProbability;
+    randProbability = (RAND_MAX - rand())/ static_cast<double>(RAND_MAX);
+
 
   }
 
