@@ -1,12 +1,12 @@
 #include <iostream>
 
-include namespace std;
+using namespace std;
 
 class RandGrid
 {
   public:
     RandGrid(int rowDim, int colDim, double randProb);
-    ~RandGrid();
+    //~RandGrid();
 
     char** getGrid();
 
@@ -14,5 +14,10 @@ class RandGrid
     int rowDimension;
     int columnDimension;
     double randProbability;
+
+    char updateGrid();
+    char printGrid();
+
+
 
 };

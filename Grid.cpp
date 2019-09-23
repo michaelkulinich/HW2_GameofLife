@@ -2,7 +2,7 @@
 #include "Grid.h"
 
 using namespace std;
-
+/*
 Grid::Grid() //constructor
 {
 
@@ -39,7 +39,8 @@ void Grid::printGrid(Grid grid)
 }
 
 int main(int argc, char const *argv[]) {
-  Grid *testGrid = new Grid(5,5);
+  Grid testGrid = new Grid(5,5);
 
   return 0;
 }
+*/

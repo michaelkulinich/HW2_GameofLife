@@ -1,8 +1,16 @@
 #include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include "FileHelper.h"
+#include "RandGrid.h"
+
+
 
 using namespace std;
 
 int main(int argc, char const *argv[]) {
+
+
   cout << "------------- Welcome to the Game of Life -------------" << endl;
   cout << "Designed in the 1970s: A Simulation of Bacterial Life Cycle" << endl;
   cout << "\n" << endl;
@@ -10,11 +18,20 @@ int main(int argc, char const *argv[]) {
   cout << "Press a 'I' to import a map file or 'R' random assignment: ";
   char progStartChoice;
   cin >> progStartChoice;
+  char **ourGrid;
+  string fileName;
 
   if (progStartChoice == 'I')
   {
     cout << "You chose " << progStartChoice << endl;
+    cout << "Insert File name: " << endl;
+    cin >> fileName;
+
+    FileHelper helper(fileName);
+    helper.setGrid();
+    helper.getGrid();
     cout << "Importing map file..." << endl;
+
 
 
   }
@@ -28,16 +45,15 @@ int main(int argc, char const *argv[]) {
     cout << "Enter Column Dimension" << endl;
     int columnDimension;
     cin >> columnDimension;
-    cout << "Enter initial population density decimal (0,1]"
+    cout << "Enter initial population density decimal (0,1]";
     double popDensity;
     cin >> popDensity;
-    double randProbability;
-    randProbability = (RAND_MAX - rand())/ static_cast<double>(RAND_MAX);
+    RandGrid grid(rowDimension, columnDimension, popDensity);
+    //ourGrid = grid.getGrid();
+
 
 
   }
-
-
 
 
 

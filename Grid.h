@@ -1,11 +1,18 @@
 #include <iostream>
 
-include namespace std;
-
+using namespace std;
+/*
 class Grid
 {
   Grid(); // constructor
+  Grid(int numRows, int numColumns); // constructor
   ~Grid(); // destructor
-  int rowSize;
-  int columnSize;
-}
+
+  int numRows() const;
+  int numColumns() const;
+
+
+  char updateGrid();
+  char printGrid();
+};
+*/
