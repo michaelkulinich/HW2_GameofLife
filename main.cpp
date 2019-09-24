@@ -26,10 +26,17 @@ int main(int argc, char const *argv[]) {
     cout << "You chose " << progStartChoice << endl;
     cout << "Insert File name: " << endl;
     cin >> fileName;
+    cout << "check 1" << endl;
 
     FileHelper helper(fileName);
+    cout << "check 2" << endl;
+
     helper.setGrid();
+    cout << "check 3" << endl;
+
     helper.getGrid();
+    cout << "check 4" << endl;
+
     cout << "Importing map file..." << endl;
 
 
@@ -48,7 +55,7 @@ int main(int argc, char const *argv[]) {
     cout << "Enter initial population density decimal (0,1]";
     double popDensity;
     cin >> popDensity;
-    RandGrid grid(rowDimension, columnDimension, popDensity);
+  //  RandGrid grid(rowDimension, columnDimension, popDensity);
     //ourGrid = grid.getGrid();
 
 

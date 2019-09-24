@@ -7,7 +7,7 @@ class FileHelper
   public:
 
     FileHelper(string fileName);
-    //~FileHelper();
+    ~FileHelper();
 
     void setGrid();
     //char** getGrid();
