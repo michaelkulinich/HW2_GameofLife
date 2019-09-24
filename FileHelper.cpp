@@ -38,38 +38,24 @@ void FileHelper::setGrid()
 
   }
 
-  myGrid = new char*[rowDimension];
-  for(int i = 0; i < rowDimension; ++i)
-      myGrid[i] = new char[columnDimension];
+  myGrid = new char*[rowDimension+2];
+  for(int i = 0; i < rowDimension+2; ++i)
+      myGrid[i] = new char[columnDimension+2];
     while (inFile >> line)
     {
       for (int i = 0; i<line.size(); ++i)
       {
-        myGrid[lineCount][i] = line[i];
-        cout << myGrid[lineCount][i];
+        myGrid[lineCount+1][i+1] = line[i];
       }
       ++lineCount;
-      cout << endl;
+
     }
 inFile.close();
 }
 
-void FileHelper::getGrid()
+char** FileHelper::getGrid()
 {
-  cout << "check 1 inside of getGrid\n";
-  cout << rowDimension << endl;
-  cout << columnDimension << endl;
-
-  for (int i = 0; i<rowDimension; ++i)
-  {
-    for (int j = 0; j<columnDimension; ++j)
-    {
-      cout << myGrid[i][j];
-
-    }
-    cout <<endl;
-
-  }
+  return myGrid;
 }
 
 FileHelper::~FileHelper(){

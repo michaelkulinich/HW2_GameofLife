@@ -16,6 +16,6 @@ class FileHelper
     char **myGrid;
     int rowDimension;
     int columnDimension;
-    void getGrid();
+    char** getGrid();
 
 };

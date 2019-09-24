@@ -21,6 +21,7 @@ int main(int argc, char const *argv[]) {
   char **ourGrid;
   string fileName;
 
+
   if (progStartChoice == 'I')
   {
     cout << "You chose " << progStartChoice << endl;
@@ -31,15 +32,13 @@ int main(int argc, char const *argv[]) {
     FileHelper helper(fileName);
     cout << "check 2" << endl;
 
-    helper.setGrid();
+    helper.setGrid();  //take out the print statements
     cout << "check 3" << endl;
 
-    helper.getGrid();
+    ourGrid = helper.getGrid();
     cout << "check 4" << endl;
 
     cout << "Importing map file..." << endl;
-
-
 
   }
 
@@ -56,12 +55,12 @@ int main(int argc, char const *argv[]) {
     double popDensity;
     cin >> popDensity;
     RandGrid grid(rowDimension, columnDimension, popDensity);
-    //ourGrid = grid.getGrid();
-
+    ourGrid = grid.getGrid();                         //is this sketch?? memory leak
 
     cout << "check 4\n";
   }
 
+//the initial grids are ready so now we can start the simulation
 
 
 

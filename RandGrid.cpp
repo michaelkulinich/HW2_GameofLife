@@ -66,9 +66,9 @@ RandGrid::RandGrid(int rowDim, int colDim, double popDensity)
     delete [] myGrid;
   }
 
-  char** getGrid();
+  char** RandGrid::getGrid()
   {
-    // returns myGrid
+    return myGrid;
   }
 
   //char updateGrid();
