@@ -55,11 +55,11 @@ int main(int argc, char const *argv[]) {
     cout << "Enter initial population density decimal (0,1]";
     double popDensity;
     cin >> popDensity;
-  //  RandGrid grid(rowDimension, columnDimension, popDensity);
+    RandGrid grid(rowDimension, columnDimension, popDensity);
     //ourGrid = grid.getGrid();
 
 
-
+    cout << "check 4\n";
   }
 
 

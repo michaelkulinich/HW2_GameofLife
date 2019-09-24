@@ -1,12 +1,13 @@
 #include <iostream>
-
+#include <cmath>
+#include <cstdlib>
 using namespace std;
 
 class RandGrid
 {
   public:
     RandGrid(int rowDim, int colDim, double randProb);
-    //~RandGrid();
+    ~RandGrid();
 
   //  char** getGrid();
 
