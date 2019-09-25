@@ -7,10 +7,10 @@ Simulation::Simulation(){
 }
 
 Simulation::Simulation(char **grid1, char **grid2, int rowDim, int colDim){
-  currentGrid = grid1;            //IS THIS SKETCH??
-  nextGrid = grid2;
-  rowDimension = rowDim;
-  columnDimension = colDim;
+   currentGrid = grid1;            //IS THIS SKETCH??
+   nextGrid = grid2;
+   rowDimension = rowDim;
+   columnDimension = colDim;
 }
 
 void Simulation::run(){
@@ -63,12 +63,13 @@ void Simulation::run(){
       }
     }
 
-    for(int i = 0; i < rowDimension+2; ++i){
-      for(int j = 0; j < columnDimension+2; ++j){
+  for(int i = 0; i < rowDimension+2; ++i){
+    for(int j = 0; j < columnDimension+2; ++j){
         cout << currentGrid[i][j];
   }
   cout << endl;
 }
+cout <<"next Grid\n";
 for(int i = 0; i < rowDimension+2; ++i){
   for(int j = 0; j < columnDimension+2; ++j){
     cout << nextGrid[i][j];
@@ -97,9 +98,10 @@ void Simulation::mirror(){
 }
 
 Simulation::~Simulation(){
-  for(int i = 0; i < rowDimension + 2; ++i) {
-      delete [] currentGrid[i];
-      delete [] nextGrid[i];
-  }
-  delete [] nextGrid;
+  // for(int i = 0; i < rowDimension + 2; ++i) {
+  //     delete [] currentGrid[i];
+  //     delete [] nextGrid[i];
+  // }
+  // delete [] nextGrid;
+  // delete [] currentGrid;
 }

@@ -16,6 +16,8 @@ class FileHelper
     int columnDimension;
     char** getCurrentGrid();
     char** getNextGrid();
+    int getRow();
+    int getColumn();
 
 
   private:

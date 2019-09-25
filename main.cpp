@@ -35,8 +35,15 @@ int main(int argc, char const *argv[]) {
     FileHelper helper(fileName);
     helper.setGrid();  //take out the print statements
     currentGrid = helper.getCurrentGrid();
-    cout << "Importing map file..." << endl;
+    nextGrid = helper.getNextGrid();
 
+    rowDimension = helper.getRow();
+    columnDimension = helper.getColumn();
+
+    Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
+    sim.run();
+
+    cout << "Importing map file..." << endl;
   }
 
   else if (progStartChoice == 'R')
@@ -52,12 +59,13 @@ int main(int argc, char const *argv[]) {
     RandGrid grid(rowDimension, columnDimension, popDensity);
     currentGrid = grid.getCurrentGrid();                         //is this sketch?? memory leak
     nextGrid = grid.getNextGrid();
+    Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
+    sim.run();
+
 
   }
 
-//the initial grids are ready so now we can start the simulation
-  Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
-  sim.run();
+
 
 //  int mode;
   //cout << "What kind of gamemode will you want"      ask in run

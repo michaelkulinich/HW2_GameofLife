@@ -72,6 +72,14 @@ char** FileHelper::getNextGrid()
   return myNextGrid;
 }
 
+int FileHelper::getColumn(){
+  return columnDimension;
+}
+
+int FileHelper::getRow(){
+  return rowDimension;
+}
+
 FileHelper::~FileHelper(){
   for(int i = 0; i < rowDimension + 2; ++i) {
       delete [] myCurrentGrid[i];
