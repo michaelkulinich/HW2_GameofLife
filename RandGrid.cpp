@@ -23,19 +23,35 @@ RandGrid::RandGrid(int rowDim, int colDim, double popDensity)
 
 
 
-  for (int i = 1; i<rowDimension+1; ++i)
+  for (int i = 0; i<rowDimension+2; ++i)
   {
-    for (int j = 1; j<columnDimension+1; ++j)
+    for (int j = 0; j<columnDimension+2; ++j)
     {
       randProbability = (RAND_MAX - rand())/ static_cast<double>(RAND_MAX);
+      if(i == 0){
+        myCurrentGrid[i][j] = '-';
+        myNextGrid[i][j] = '-';
+      }
+      else if(j == 0){
+        myCurrentGrid[i][j] = '-';
+        myNextGrid[i][j] = '-';
+      }
+      else if (j == columnDimension + 1){
+        myCurrentGrid[i][j] = '-';
+        myNextGrid[i][j] = '-';
+      }
+      else if( i == rowDimension + 1){
+        myCurrentGrid[i][j] = '-';
+        myNextGrid[i][j] = '-';
+      }
 
-      if (randProbability < popDensity)
+      else if (randProbability < popDensity)
       {
         myCurrentGrid[i][j] = 'X';
         myNextGrid[i][j] = 'X';
       }
 
-      else
+      else if(randProbability > popDensity)
       {
         myCurrentGrid[i][j] = '-';
         myNextGrid[i][j] = '-';
@@ -44,6 +60,7 @@ RandGrid::RandGrid(int rowDim, int colDim, double popDensity)
     }
 
   }
+
 
 }
 
@@ -64,6 +81,7 @@ char** RandGrid::getNextGrid()
         delete [] myNextGrid[i];
     }
     delete [] myNextGrid;
+    delete [] myCurrentGrid;
   }
 
 

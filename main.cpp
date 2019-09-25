@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "FileHelper.h"
 #include "RandGrid.h"
+#include "Simulation.h"
 
 
 
@@ -21,6 +22,8 @@ int main(int argc, char const *argv[]) {
   char **currentGrid;
   char **nextGrid;
   string fileName;
+  int rowDimension;
+  int columnDimension;
 
 
   if (progStartChoice == 'I')
@@ -40,10 +43,8 @@ int main(int argc, char const *argv[]) {
   {
     cout << "You chose " << progStartChoice << endl;
     cout << "Enter Row Dimension" << endl;
-    int rowDimension;
     cin >> rowDimension;
     cout << "Enter Column Dimension" << endl;
-    int columnDimension;
     cin >> columnDimension;
     cout << "Enter initial population density decimal (0,1]";
     double popDensity;
@@ -52,30 +53,11 @@ int main(int argc, char const *argv[]) {
     currentGrid = grid.getCurrentGrid();                         //is this sketch?? memory leak
     nextGrid = grid.getNextGrid();
 
-    for (int i = 0; i<rowDimension+2; ++i)
-    {
-      for (int j = 0; j<columnDimension+2; ++j)
-      {
-        cout << currentGrid[i][j];
-      }
-      cout << endl;
-    }
-    cout << "next\n";
-    for (int i = 0; i<rowDimension+2; ++i)
-    {
-      for (int j = 0; j<columnDimension+2; ++j)
-      {
-        cout << nextGrid[i][j];
-      }
-      cout << endl;
-    }
-
-
-
   }
 
 //the initial grids are ready so now we can start the simulation
-
+  Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
+  sim.run();
 
 //  int mode;
   //cout << "What kind of gamemode will you want"      ask in run
