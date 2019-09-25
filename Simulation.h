@@ -6,8 +6,9 @@ class Simulation
 {
   public:
     Simulation(); // constructor
-    Simulation(char ** grid); //overload constructor
+    Simulation(char **grid1, char **grid2); //overload constructor
     ~Simulation();
+  private:
     char **currentGrid;
     char **nextGrid;
 

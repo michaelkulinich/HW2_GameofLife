@@ -18,7 +18,8 @@ int main(int argc, char const *argv[]) {
   cout << "Press a 'I' to import a map file or 'R' random assignment: ";
   char progStartChoice;
   cin >> progStartChoice;
-  char **ourGrid;
+  char **currentGrid;
+  char **nextGrid;
   string fileName;
 
 
@@ -27,17 +28,10 @@ int main(int argc, char const *argv[]) {
     cout << "You chose " << progStartChoice << endl;
     cout << "Insert File name: " << endl;
     cin >> fileName;
-    cout << "check 1" << endl;
 
     FileHelper helper(fileName);
-    cout << "check 2" << endl;
-
     helper.setGrid();  //take out the print statements
-    cout << "check 3" << endl;
-
-    ourGrid = helper.getGrid();
-    cout << "check 4" << endl;
-
+    currentGrid = helper.getCurrentGrid();
     cout << "Importing map file..." << endl;
 
   }
@@ -55,12 +49,36 @@ int main(int argc, char const *argv[]) {
     double popDensity;
     cin >> popDensity;
     RandGrid grid(rowDimension, columnDimension, popDensity);
-    ourGrid = grid.getGrid();                         //is this sketch?? memory leak
+    currentGrid = grid.getCurrentGrid();                         //is this sketch?? memory leak
+    nextGrid = grid.getNextGrid();
 
-    cout << "check 4\n";
+    for (int i = 0; i<rowDimension+2; ++i)
+    {
+      for (int j = 0; j<columnDimension+2; ++j)
+      {
+        cout << currentGrid[i][j];
+      }
+      cout << endl;
+    }
+    cout << "next\n";
+    for (int i = 0; i<rowDimension+2; ++i)
+    {
+      for (int j = 0; j<columnDimension+2; ++j)
+      {
+        cout << nextGrid[i][j];
+      }
+      cout << endl;
+    }
+
+
+
   }
 
 //the initial grids are ready so now we can start the simulation
+
+
+//  int mode;
+  //cout << "What kind of gamemode will you want"      ask in run
 
 
 

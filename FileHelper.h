@@ -10,12 +10,16 @@ class FileHelper
     ~FileHelper();
 
     void setGrid();
-    //char** getGrid();
     ifstream inFile;
     string inputFile;
-    char **myGrid;
     int rowDimension;
     int columnDimension;
-    char** getGrid();
+    char** getCurrentGrid();
+    char** getNextGrid();
+
+
+  private:
+    char **myCurrentGrid;
+    char **myNextGrid; //do i need to make these private??
 
 };

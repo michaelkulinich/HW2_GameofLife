@@ -11,12 +11,17 @@ RandGrid::RandGrid(int rowDim, int colDim, double popDensity)
   int columnDimension = colDim;
   double randProbability;
 
-//  cout << "check 1\n";
-  myGrid = new char*[rowDimension+2];
+//declaring the current grid
+  myCurrentGrid = new char*[rowDimension+2];
   for(int i = 0; i < rowDimension+2; ++i)
-      myGrid[i] = new char[columnDimension+2];
+      myCurrentGrid[i] = new char[columnDimension+2];
 
-    //  cout << "check 2\n";
+  //declaring the next grid
+  myNextGrid = new char*[rowDimension+2];
+  for(int i = 0; i < rowDimension+2; ++i)
+      myNextGrid[i] = new char[columnDimension+2];
+
+
 
   for (int i = 1; i<rowDimension+1; ++i)
   {
@@ -26,50 +31,69 @@ RandGrid::RandGrid(int rowDim, int colDim, double popDensity)
 
       if (randProbability < popDensity)
       {
-        myGrid[i][j] = 'X';
+        myCurrentGrid[i][j] = 'X';
+        myNextGrid[i][j] = 'X';
       }
 
       else
       {
-        myGrid[i][j] = '-';
+        myCurrentGrid[i][j] = '-';
+        myNextGrid[i][j] = '-';
       }
 
     }
 
   }
 
-// test to show there is a box around our array
-
-
-// for (int i = 0; i < columnDimension+2; ++i)
-// {
-//   myGrid[rowDimension+1][i] = 'X';
-//
-// }
-//
-// for (int i = 0; i<rowDimension+2; ++i)
-// {
-//   for (int j = 0; j<columnDimension+2; ++j)
-//   {
-//     cout << myGrid[i][j];
-//   }
-//   cout << endl;
-// }
-
-//  cout << "check 3\n";
-
 }
+
+char** RandGrid::getCurrentGrid()
+{
+
+  return myCurrentGrid;
+}
+char** RandGrid::getNextGrid()
+{
+  return myNextGrid;
+}
+
+
   RandGrid::~RandGrid(){
-    for(int i = 0; i < columnDimension; ++i) {
-        delete [] myGrid[i];
+    for(int i = 0; i < rowDimension + 2; ++i) {
+        delete [] myCurrentGrid[i];
+        delete [] myNextGrid[i];
     }
-    delete [] myGrid;
+    delete [] myNextGrid;
   }
 
-  char** RandGrid::getGrid()
-  {
-    return myGrid;
-  }
+
+
+
+
 
   //char updateGrid();
   //char printGrid();
+
+
+
+
+
+  // test to show there is a box around our array
+
+
+  // for (int i = 0; i < columnDimension+2; ++i)
+  // {
+  //   myGrid[rowDimension+1][i] = 'X';
+  //
+  // }
+  //
+  // for (int i = 0; i<rowDimension+2; ++i)
+  // {
+  //   for (int j = 0; j<columnDimension+2; ++j)
+  //   {
+  //     cout << myGrid[i][j];
+  //   }
+  //   cout << endl;
+  // }
+
+  //  cout << "check 3\n";

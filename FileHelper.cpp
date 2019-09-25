@@ -38,29 +38,46 @@ void FileHelper::setGrid()
 
   }
 
-  myGrid = new char*[rowDimension+2];
-  for(int i = 0; i < rowDimension+2; ++i)
-      myGrid[i] = new char[columnDimension+2];
+  myCurrentGrid = new char*[rowDimension+2];
+  for(int i = 0; i < rowDimension+2; ++i){
+      myCurrentGrid[i] = new char[columnDimension+2];
+    }
+
+  myNextGrid = new char*[rowDimension+2];
+  for(int i = 0; i < rowDimension+2; ++i){
+      myNextGrid[i] = new char[columnDimension+2];
+    }
     while (inFile >> line)
     {
       for (int i = 0; i<line.size(); ++i)
       {
-        myGrid[lineCount+1][i+1] = line[i];
+        myCurrentGrid[lineCount+1][i+1] = line[i];
+        myNextGrid[lineCount+1][i+1] = line[i];
+
       }
       ++lineCount;
 
     }
 inFile.close();
+
 }
 
-char** FileHelper::getGrid()
+char** FileHelper::getCurrentGrid()
 {
-  return myGrid;
+  return myCurrentGrid;
+}
+
+char** FileHelper::getNextGrid()
+{
+  return myNextGrid;
 }
 
 FileHelper::~FileHelper(){
-  for(int i = 0; i < columnDimension; ++i) {
-      delete [] myGrid[i];
+  for(int i = 0; i < rowDimension + 2; ++i) {
+      delete [] myCurrentGrid[i];
+      delete [] myNextGrid[i];
+
   }
-  delete [] myGrid;
+  delete [] myCurrentGrid;
+  delete [] myNextGrid;
 }

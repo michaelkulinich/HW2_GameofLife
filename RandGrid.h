@@ -9,12 +9,16 @@ class RandGrid
     RandGrid(int rowDim, int colDim, double randProb);
     ~RandGrid();
 
-    char** getGrid();
+    char** getCurrentGrid();
+    char** getNextGrid();
 
-    char **myGrid;
+
     int rowDimension;
     int columnDimension;
     double randProbability;
+  private:
+    char **myCurrentGrid;
+    char **myNextGrid;
 
   //  char updateGrid();
   //  char printGrid();
