@@ -81,11 +81,11 @@ int FileHelper::getRow(){
 }
 
 FileHelper::~FileHelper(){
-  for(int i = 0; i < rowDimension + 2; ++i) {
-      delete [] myCurrentGrid[i];
-      delete [] myNextGrid[i];
-
-  }
-  delete [] myCurrentGrid;
-  delete [] myNextGrid;
+  // for(int i = 0; i < rowDimension + 2; ++i) {
+  //     delete [] myCurrentGrid[i];
+  //     delete [] myNextGrid[i];
+  //
+  // }
+  // delete [] myCurrentGrid;
+  // delete [] myNextGrid;
 }

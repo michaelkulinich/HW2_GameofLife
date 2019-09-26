@@ -6,7 +6,7 @@ class Simulation
 {
   public:
     Simulation(); // constructor
-    Simulation(char **grid1, char **grid2, int rowDim, int colDim); //overload constructor
+    Simulation(char **&grid1, char **&grid2, int rowDim, int colDim); //overload constructor
     ~Simulation();
     void run();//runs the simulation and calls the gamemode methods
                //when it is needed to update the board

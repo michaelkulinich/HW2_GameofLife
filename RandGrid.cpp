@@ -76,12 +76,12 @@ char** RandGrid::getNextGrid()
 
 
   RandGrid::~RandGrid(){
-    for(int i = 0; i < rowDimension + 2; ++i) {
-        delete [] myCurrentGrid[i];
-        delete [] myNextGrid[i];
-    }
-    delete [] myNextGrid;
-    delete [] myCurrentGrid;
+    // for(int i = 0; i < rowDimension + 2; ++i) {
+    //     delete [] myCurrentGrid[i];
+    //     delete [] myNextGrid[i];
+    // }
+    // delete [] myNextGrid;
+    // delete [] myCurrentGrid;
   }
 
 
