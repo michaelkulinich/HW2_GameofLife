@@ -15,99 +15,52 @@ Simulation::Simulation(char **&grid1, char **&grid2, int rowDim, int colDim){
 
 void Simulation::run(){
   int mode;
-  int gen = 0;
-  int differenceCounter = 0; //if the generations are the same, program should end;
-  int countCells = 0;   //counts the number of X's around the cell
+  int gen = 1;
+  differenceCounter = 0; //if the generations are the same, program should end;
+  countCells = 0;   //counts the number of X's around the cell
+  outFile.open("MichaelKulinich.out");
   cout << "What Kind of gamemode will you like to run?(type in the number)\n(1)Classic\n(2)Doughnut\n(3)Mirror\n";
   cin >> mode;
 
   if (mode == 1){
     //code for classic
 
-    cout << "Initial Grid: gen 0" << endl;
-      for(int i = 0; i < rowDimension+2; ++i){
-        for(int j = 0; j < columnDimension+2; ++j){
+    cout << 0 << endl;
+    outFile << 0 << endl;
+      for(int i = 1; i < rowDimension+2; ++i){
+        for(int j = 1; j < columnDimension+2; ++j){
             cout << currentGrid[i][j];
+            outFile << currentGrid[i][j];
       }
       cout << endl;
+      outFile << endl;
     }
     while(gen < 100){
       differenceCounter = 0; //set the counter to 0 before each update generation
     //create a method call check!!!!! make this less repetitive
-        for(int i = 1; i < rowDimension+1; ++i){
-          for(int j = 1; j < columnDimension+1; ++j){
-
-
-            for(int k = -1; k <= 1 ; k++){
-              for(int m = -1; m <= 1; m++){
-                if((i + k == i) && (j + m == j)){
-                  // do nothing becasue it is at the index in which we are checking neighbors FOR
-                }
-                else if(currentGrid[i+k][j+m] == 'X'){
-                  countCells++;
-                }
-              }
-            }
-            switch(countCells){
-              case 0:
-              case 1:
-                nextGrid[i][j] = '-';
-                countCells = 0;
-                break;
-              case 2:
-                nextGrid[i][j] = currentGrid[i][j];
-                countCells = 0;
-                break;
-              case 3:
-                nextGrid[i][j] = 'X';
-                countCells = 0;
-                break;
-              case 4:
-              case 5:
-              case 6:
-              case 7:
-              case 8:
-                nextGrid[i][j] = '-';
-                countCells = 0;
-                break;
-              default:
-                cout << ":(";
-            }
-
-          }
-        }
-
-    cout <<"Generation: " << gen+1 << endl;
-    for(int i = 1; i < rowDimension+1; ++i){
-      for(int j = 1; j < columnDimension+1; ++j){
-        cout << nextGrid[i][j];
+      update();
+      if(differenceCounter == 0){
+        cout << "THE PROGRAM STOPS BECAUSE THE BOARD WILL NO LONGER CHANGE" << endl;
+        break;
       }
-    cout << endl;
-    }
-
-
-    //check if the generations are the same
+      cout << gen << endl;
+      outFile << gen << endl;
       for(int i = 1; i < rowDimension+1; ++i){
         for(int j = 1; j < columnDimension+1; ++j){
-          if( !(currentGrid[i][j] == nextGrid[i][j])){
-            differenceCounter++;
-          }
+          cout << nextGrid[i][j];
+          outFile << nextGrid[i][j];
         }
+      cout << endl;
+      outFile << endl;
       }
+
 
     // cout << "new current grid"<< endl;;
     // //copy the next grid into the current grid, the boundary will always stay -
       for(int i = 0; i < rowDimension+2; ++i){
         for(int j = 0; j < columnDimension+2; ++j){
           currentGrid[i][j] = nextGrid[i][j];
-
-
         }
-      }
-      if(differenceCounter == 0){
-        cout << "THIS GENERATION IS THE SAME THE LAST" << endl;
-        cout << "THE PROGRAM STOPS BECAUSE NO CHANGE WILL EVER HAPPEN AGAIN!!!" << endl;
-        break;
       }
       gen++;
     }
@@ -123,7 +76,14 @@ void Simulation::run(){
 
   else if (mode == 2){
     //code for doughnut
-    //after each generation, we will need to update the boundary
+
+    //set the corner boundaries
+    //the corner boundaries are equal to the actual board boundaries
+    currentGrid[0][columnDimension+1] = currentGrid[rowDimension][1];
+    currentGrid[0][0] = currentGrid[rowDimension][columnDimension];
+    currentGrid[rowDimension+1][0] = currentGrid[1][columnDimension];
+    currentGrid[rowDimension+1][columnDimension+1] = currentGrid[1][1];
+
 
 
       //set the boundary for row 0 and last
@@ -138,76 +98,38 @@ void Simulation::run(){
       currentGrid[i][columnDimension+1] = currentGrid[i][1];
     }
 
-    cout << "Initial Grid: gen 0" << endl;
-      for(int i = 0; i < rowDimension+2; ++i){
-        for(int j = 0; j < columnDimension+2; ++j){
+    cout << 0 << endl;
+    outFile << 0 << endl;
+      for(int i = 1; i < rowDimension+1; ++i){
+        for(int j = 1; j < columnDimension+1; ++j){
             cout << currentGrid[i][j];
+            outFile << currentGrid[i][j];
       }
       cout << endl;
+      outFile << endl;
     }
 
     while(gen < 100){
       differenceCounter = 0;
     //create a method call check!!!!! make this less repetitive
-        for(int i = 1; i < rowDimension+1; ++i){
-          for(int j = 1; j < columnDimension+1; ++j){
-
-
-            for(int k = -1; k <= 1 ; k++){
-              for(int m = -1; m <= 1; m++){
-                if((i + k == i) && (j + m == j)){
-                  // do nothing becasue it is at the index in which we are checking neighbors FOR
-                }
-                else if(currentGrid[i+k][j+m] == 'X'){
-                  countCells++;
-                }
-              }
-            }
-            switch(countCells){
-              case 0:
-              case 1:
-                nextGrid[i][j] = '-';
-                countCells = 0;
-                break;
-              case 2:
-                nextGrid[i][j] = currentGrid[i][j];
-                countCells = 0;
-                break;
-              case 3:
-                nextGrid[i][j] = 'X';
-                countCells = 0;
-                break;
-              case 4:
-              case 5:
-              case 6:
-              case 7:
-              case 8:
-                nextGrid[i][j] = '-';
-                countCells = 0;
-                break;
-              default:
-                cout << ":(";
-            }
-
-          }
-        }
-
-    cout <<"Generation: " << gen+1 << endl;
-    for(int i = 1; i < rowDimension+1; ++i){
-      for(int j = 1; j < columnDimension+1; ++j){
-        cout << nextGrid[i][j];
+        update();
+      if(differenceCounter == 0){
+        cout << "THE PROGRAM STOPS BECAUSE THE BOARD WILL NO LONGER CHANGE" << endl;
+        break;
       }
-    cout << endl;
-    }
 
-    //check if the generations are the same
+      cout << gen << endl;
+      outFile << gen << endl;
       for(int i = 1; i < rowDimension+1; ++i){
         for(int j = 1; j < columnDimension+1; ++j){
-          if( !(currentGrid[i][j] == nextGrid[i][j])){
-            differenceCounter++;
-          }
+          cout << nextGrid[i][j];
+          outFile << nextGrid[i][j];
         }
+      cout << endl;
+      outFile << endl;
       }
+
+
 
     // cout << "new current grid"<< endl;;
     // //copy the next grid into the current grid, the boundary will always stay -
@@ -217,11 +139,13 @@ void Simulation::run(){
 
         }
       }
-      if(differenceCounter == 0){
-        cout << "THIS GENERATION IS THE SAME THE LAST" << endl;
-        cout << "THE PROGRAM STOPS BECAUSE NO CHANGE WILL EVER HAPPEN AGAIN!!!" << endl;
-        break;
-      }
+
+      //set the corner boundaries
+      currentGrid[0][columnDimension+1] = currentGrid[rowDimension][1];
+      currentGrid[0][0] = currentGrid[rowDimension][columnDimension]; //  DOUBLE CHECK IF THE LOGIC HERE IS CURRECT. IF this is the right place to set boundaries
+      currentGrid[rowDimension+1][0] = currentGrid[1][columnDimension];
+      currentGrid[rowDimension+1][columnDimension+1] = currentGrid[1][1];
+
       gen++;
     }
   }
@@ -236,75 +160,38 @@ void Simulation::run(){
     currentGrid[i][columnDimension+1] = currentGrid[i][1];
   }
 
-  cout << "Initial Grid: gen 0" << endl;
+  cout << 0 << endl;
+  outFile << 0 << endl;
     for(int i = 0; i < rowDimension+2; ++i){
       for(int j = 0; j < columnDimension+2; ++j){
           cout << currentGrid[i][j];
+          outFile << currentGrid[i][j];
     }
     cout << endl;
+    outFile << endl;
   }
 
   while(gen < 100){
     differenceCounter = 0;// set counter to 0 before every generation update
   //create a method call check!!!!! make this less repetitive
-      for(int i = 1; i < rowDimension+1; ++i){
-        for(int j = 1; j < columnDimension+1; ++j){
+      update();
+    if(differenceCounter == 0){
+      cout << "THE PROGRAM STOPS BECAUSE NO THE BOARD WILL NO LONGER CHANGE" << endl;
+      break;
+    }
 
 
-          for(int k = -1; k <= 1 ; k++){
-            for(int m = -1; m <= 1; m++){
-              if((i + k == i) && (j + m == j)){
-                // do nothing becasue it is at the index in which we are checking neighbors FOR
-              }
-              else if(currentGrid[i+k][j+m] == 'X'){
-                countCells++;
-              }
-            }
-          }
-          switch(countCells){
-            case 0:
-            case 1:
-              nextGrid[i][j] = '-';
-              countCells = 0;
-              break;
-            case 2:
-              nextGrid[i][j] = currentGrid[i][j];
-              countCells = 0;
-              break;
-            case 3:
-              nextGrid[i][j] = 'X';
-              countCells = 0;
-              break;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-              nextGrid[i][j] = '-';
-              countCells = 0;
-              break;
-            default:
-              cout << ":(";
-          }
-
-        }
-      }
-
-  cout <<"Generation: " << gen+1 << endl;
+  cout << gen << endl;
+  outFile << gen << endl;
   for(int i = 1; i < rowDimension+1; ++i){
     for(int j = 1; j < columnDimension+1; ++j){
       cout << nextGrid[i][j];
+      outFile << nextGrid[i][j];
     }
   cout << endl;
+  outFile << endl;
   }
-//check if the generations are the same
-  for(int i = 1; i < rowDimension+1; ++i){
-    for(int j = 1; j < columnDimension+1; ++j){
-      if( !(currentGrid[i][j] == nextGrid[i][j])){
-        differenceCounter++;
-      }
-    }
-  }
+
 
   // cout << "new current grid"<< endl;;
   // //copy the next grid into the current grid, the boundary will always stay -
@@ -314,20 +201,66 @@ void Simulation::run(){
 
       }
     }
-    if(differenceCounter == 0){
-      cout << "THIS GENERATION IS THE SAME THE LAST" << endl;
-      cout << "THE PROGRAM STOPS BECAUSE NO CHANGE WILL EVER HAPPEN AGAIN!!!" << endl;
-      break;
-    }
     gen++;
   }
-
   }
-
+  outFile.close();
 }
 
 //might not even need the methods
-void Simulation::classic(){
+void Simulation::update(){
+  //iterate through the actual board, not the boundaries
+  for(int i = 1; i < rowDimension+1; ++i){
+    for(int j = 1; j < columnDimension+1; ++j){
+
+      //this iterates the 8 cells around each cell were inspecting
+      for(int k = -1; k <= 1 ; k++){
+        for(int m = -1; m <= 1; m++){
+          if((i + k == i) && (j + m == j)){
+            // do nothing becasue it is at the index in which we are checking neighbors FOR
+          }
+          //count the number of X around each cell
+          else if(currentGrid[i+k][j+m] == 'X'){
+            countCells++;
+          }
+        }
+      }
+      //depending on how many cells are X's, determines if the cell lives or dies
+      switch(countCells){
+        case 0:
+        case 1:
+          nextGrid[i][j] = '-';
+          countCells = 0;
+          break;
+        case 2:
+          nextGrid[i][j] = currentGrid[i][j];
+          countCells = 0;
+          break;
+        case 3:
+          nextGrid[i][j] = 'X';
+          countCells = 0;
+          break;
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+          nextGrid[i][j] = '-';
+          countCells = 0;
+          break;
+        default:
+          cout << ":(";
+      }
+    }
+  }
+//check if the generations are the same, if differenceCounter = 0, the program will end
+for(int i = 1; i < rowDimension+1; ++i){
+  for(int j = 1; j < columnDimension+1; ++j){
+    if( !(currentGrid[i][j] == nextGrid[i][j])){
+      differenceCounter++;
+    }
+  }
+}
 
 }
 
