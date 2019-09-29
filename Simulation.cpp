@@ -18,10 +18,27 @@ void Simulation::run(){
   int gen = 1;
   differenceCounter = 0; //if the generations are the same, program should end;
   countCells = 0;   //counts the number of X's around the cell
+  char briefPause;
+  bool briefPauseBool;
   outFile.open("MichaelKulinich.out");
-  cout << "What Kind of gamemode will you like to run?(type in the number)\n(1)Classic\n(2)Doughnut\n(3)Mirror\n";
+  cout << "What kind of gamemode will you like to run?" << endl;
+  cout << "(type in the number)\n(1) Classic\n(2) Doughnut\n(3) Mirror\n" << endl;
+
   cin >> mode;
 
+  cout << "Would you like a brief pause in between generations? (Y/N)" << endl;
+  cin >> briefPause;
+  if (toupper(briefPause) == 'Y')
+  {
+    briefPauseBool = true;
+  }
+
+  else
+  {
+    briefPauseBool = false;
+  }
+
+// ADD BRIEF PAUSE TO IF STATEMENT
   if (mode == 1){
     //code for classic
 
@@ -118,8 +135,8 @@ void Simulation::run(){
         break;
       }
 
-      cout << gen << endl;
-      outFile << gen << endl;
+      cout << "Generation Number: " << gen << endl;
+      outFile << "Generation Number: " << gen << endl;
       for(int i = 1; i < rowDimension+1; ++i){
         for(int j = 1; j < columnDimension+1; ++j){
           cout << nextGrid[i][j];
