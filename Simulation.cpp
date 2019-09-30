@@ -66,7 +66,7 @@ void Simulation::run()
   }
   else
   {
-    
+
   }
 
 
@@ -78,11 +78,13 @@ void Simulation::run()
 
     cout << 0 << endl;
     outFile << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i){
-        for(int j = 1; j < columnDimension+2; ++j){
+    for(int i = 1; i < rowDimension+2; ++i)
+      {
+        for(int j = 1; j < columnDimension+2; ++j)
+        {
             cout << currentGrid[i][j];
             outFile << currentGrid[i][j];
-      }
+        }
       cout << endl;
       outFile << endl;
     }
@@ -92,7 +94,8 @@ void Simulation::run()
     //create a method call check!!!!! make this less repetitive
       conductPause();
       update();
-      if(differenceCounter == 0){
+      if(differenceCounter == 0)
+      {
         cout << "THE PROGRAM STOPS BECAUSE THE BOARD WILL NO LONGER CHANGE" << endl;
         break;
       }
