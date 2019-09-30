@@ -14,11 +14,19 @@ class Simulation
     void update(); // will handle updating the grid for classic gamemode
     void doughnut();
     void mirror();
+    void conductPause();
     int rowDimension;
     int columnDimension;
     ofstream outFile;
+    ofstream userFile;
     int countCells;
     int differenceCounter;
+    char briefPause;
+    char enterPause;
+    bool briefPauseBool;
+    bool enterPauseBool;
+    bool outToFile;
+    string userFileName;
 
   private:
     char **currentGrid;
