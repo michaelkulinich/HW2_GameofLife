@@ -11,7 +11,6 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
-
   cout << "------------- Welcome to the Game of Life -------------" << endl;
   cout << "Designed in the 1970s: A Simulation of Bacterial Life Cycle" << endl;
   cout << "\n" << endl;
@@ -42,6 +41,7 @@ int main(int argc, char const *argv[]) {
       rowDimension = helper.getRow();
       columnDimension = helper.getColumn();
 
+// Begin Simulation
       Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
       sim.run();
       break;
@@ -57,30 +57,22 @@ int main(int argc, char const *argv[]) {
       cout << "Enter initial population density decimal (0,1]";
       double popDensity;
       cin >> popDensity;
+
+// RandGrid of desired dimensions created
       RandGrid grid(rowDimension, columnDimension, popDensity);
-      currentGrid = grid.getCurrentGrid();                         //is this sketch?? memory leak
+      currentGrid = grid.getCurrentGrid();
       nextGrid = grid.getNextGrid();
+
+// Begin Simulation
       Simulation sim(currentGrid, nextGrid, rowDimension, columnDimension);
       sim.run();
       break;
-
-
     }
-    else{
+
+    else
+    {
       cout << "Incorrect input, try again" << endl;
     }
   }
-
-
-
-//  int mode;
-  //cout << "What kind of gamemode will you want"      ask in run
-
-
-
-
-
-
-
   return 0;
 }
