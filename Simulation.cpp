@@ -23,7 +23,7 @@ void Simulation::run()
   int gen = 1;
   differenceCounter = 0; //if the generations are the same, program should end;
   countCells = 0;   //counts the number of X's around the cell
-  //outFile.open("MichaelKulinich.out");
+  //userFile.open("MichaelKulinich.out");
   cout << "What kind of gamemode will you like to run?" << endl;
   cout << "(type in the number)\n(1) Classic\n(2) Doughnut\n(3) Mirror\n" << endl;
   cin >> mode;
@@ -33,62 +33,66 @@ void Simulation::run()
   if (toupper(briefPause) == 'Y')
   {
     briefPauseBool = true;
-    enterPauseBool = false;
+  //  enterPauseBool = false;
   }
 
   else
   {
     briefPauseBool = false;
-    enterPauseBool = false;
+  //  enterPauseBool = false;
   }
-
-  cout << "Would you like to press 'Enter' key to display generations? (Y/N)" << endl;
-  cin >> enterPause;
-  if (toupper(enterPause) == 'Y')
+  if(toupper(briefPause) != 'Y')
   {
-    briefPauseBool = false;
-    enterPauseBool = true;
+    cout << "Would you like to press 'Enter' key to display generations? (Y/N)" << endl;
+    cin >> enterPause;
+    if (toupper(enterPause) == 'Y')
+    {
+    //  briefPauseBool = false;
+      enterPauseBool = true;
+    }
+
+    else
+    {
+    //  briefPauseBool = false;
+      enterPauseBool = false;
+    }
+
+    if(toupper(enterPause) != 'Y')
+    {
+      cout << "Would you like to press output everything to a file? (Y/N)" << endl;
+      cin >> outToFile;
+      cout << outToFile << endl;
+      if (toupper(outToFile) == 'Y')
+      {
+        cout << "Enter the file name, no spaces: " << endl;
+        cin >> userFileName;
+        userFile.open(userFileName);
+      }
+      else
+      {
+        cout << "Ddfdf";
+      }
+    }
   }
 
-  else
-  {
-    briefPauseBool = false;
-    enterPauseBool = false;
-  }
-
-  cout << "Would you like to press output everything to a file? (Y/N)" << endl;
-  cin >> outToFile;
-  if (toupper(outToFile) == 'Y')
-  {
-    cout << "Enter the file name, no spaces: " << endl;
-    cin >> userFileName;
-    userFile.open(userFileName);
-  }
-  else
-  {
-
-  }
 
 
-
-// ADD BRIEF PAUSE TO IF STATEMENT
+//CLASSIC MODE
   if (mode == 1)
   {
-    //code for classic
-
     cout << 0 << endl;
-    outFile << 0 << endl;
+    userFile << 0 << endl;
     for(int i = 1; i < rowDimension+2; ++i)
       {
         for(int j = 1; j < columnDimension+2; ++j)
         {
             cout << currentGrid[i][j];
-            outFile << currentGrid[i][j];
+            userFile << currentGrid[i][j];
         }
       cout << endl;
-      outFile << endl;
+      userFile << endl;
     }
-    while(gen < 100)
+    while(true)
     {
       differenceCounter = 0; //set the counter to 0 before each update generation
     //create a method call check!!!!! make this less repetitive
@@ -97,17 +101,20 @@ void Simulation::run()
       if(differenceCounter == 0)
       {
         cout << "THE PROGRAM STOPS BECAUSE THE BOARD WILL NO LONGER CHANGE" << endl;
+        cout << "Press 'enter' to exit program" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+        cout << "Exiting..\n";
         break;
       }
       cout << gen << endl;
-      outFile << gen << endl;
+      userFile << gen << endl;
       for(int i = 1; i < rowDimension+1; ++i){
         for(int j = 1; j < columnDimension+1; ++j){
           cout << nextGrid[i][j];
-          outFile << nextGrid[i][j];
+          userFile << nextGrid[i][j];
         }
       cout << endl;
-      outFile << endl;
+      userFile << endl;
       }
 
 
@@ -160,39 +167,43 @@ void Simulation::run()
     }
 
     cout << 0 << endl;
-    outFile << 0 << endl;
+    userFile << 0 << endl;
       for(int i = 1; i < rowDimension+1; ++i)
       {
         for(int j = 1; j < columnDimension+1; ++j)
         {
             cout << currentGrid[i][j];
-            outFile << currentGrid[i][j];
+            userFile << currentGrid[i][j];
         }
       cout << endl;
-      outFile << endl;
+      userFile << endl;
     }
 
     while(gen < 100)
     {
       differenceCounter = 0;
     //create a method call check!!!!! make this less repetitive
+        conductPause();
         update();
       if(differenceCounter == 0)
       {
         cout << "THE PROGRAM STOPS BECAUSE THE BOARD WILL NO LONGER CHANGE" << endl;
+        cout << "Press 'enter' to exit program...\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+        cout << "Exiting..\n";
         break;
       }
 
       cout << "Generation Number: " << gen << endl;
-      outFile << "Generation Number: " << gen << endl;
+      userFile << "Generation Number: " << gen << endl;
       for(int i = 1; i < rowDimension+1; ++i){
         for(int j = 1; j < columnDimension+1; ++j)
         {
           cout << nextGrid[i][j];
-          outFile << nextGrid[i][j];
+          userFile << nextGrid[i][j];
         }
       cout << endl;
-      outFile << endl;
+      userFile << endl;
       }
 
 
@@ -219,70 +230,77 @@ void Simulation::run()
   else
   {
     //code for mirror
-    //after each generation, we will need to update the boundary
+    currentGrid[0][columnDimension+1] = currentGrid[rowDimension][1];
+    currentGrid[0][0] = currentGrid[rowDimension][columnDimension];
+    currentGrid[rowDimension+1][0] = currentGrid[1][columnDimension];
+    currentGrid[rowDimension+1][columnDimension+1] = currentGrid[1][1];
 
-
-  //set boudary for column
-  for(int i = 1; i < rowDimension+1;++i)
-  {
-    currentGrid[i][0] = currentGrid[i][columnDimension];
-    currentGrid[i][columnDimension+1] = currentGrid[i][1];
-  }
-
-  cout << 0 << endl;
-  outFile << 0 << endl;
-    for(int i = 0; i < rowDimension+2; ++i)
+    //set boudary for column
+    for(int i = 1; i < rowDimension+1;++i)
     {
-      for(int j = 0; j < columnDimension+2; ++j)
+      currentGrid[i][0] = currentGrid[i][1];
+      currentGrid[i][columnDimension+1] = currentGrid[i][columnDimension];
+    }
+    for(int i = 1; i < columnDimension+1;++i)
+    {
+      currentGrid[0][i] = currentGrid[1][i];
+      currentGrid[rowDimension+1][i] = currentGrid[rowDimension][i];
+    }
+
+    cout << 0 << endl;
+    userFile << 0 << endl;
+      for(int i = 1; i < rowDimension+1; ++i)
       {
-          cout << currentGrid[i][j];
-          outFile << currentGrid[i][j];
+        for(int j = 1; j < columnDimension+1; ++j)
+        {
+            cout << currentGrid[i][j];
+            userFile << currentGrid[i][j];
+        }
+      cout << endl;
+      userFile << endl;
+    }
+
+    while(true)
+    {
+      differenceCounter = 0;// set counter to 0 before every generation update
+        conductPause();
+        update();
+      if(differenceCounter == 0)
+      {
+        cout << "THE PROGRAM STOPS BECAUSE NO THE BOARD WILL NO LONGER CHANGE" << endl;
+        cout << "Press 'enter' to exit program" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+        cout << "Exiting..\n";
+        break;
+      }
+
+
+    cout << gen << endl;
+    userFile << gen << endl;
+    for(int i = 1; i < rowDimension+1; ++i)
+    {
+      for(int j = 1; j < columnDimension+1; ++j)
+      {
+        cout << nextGrid[i][j];
+        userFile << nextGrid[i][j];
       }
     cout << endl;
-    outFile << endl;
-  }
-
-  while(gen < 100)
-  {
-    differenceCounter = 0;// set counter to 0 before every generation update
-  //create a method call check!!!!! make this less repetitive
-      update();
-    if(differenceCounter == 0)
-    {
-      cout << "THE PROGRAM STOPS BECAUSE NO THE BOARD WILL NO LONGER CHANGE" << endl;
-      break;
+    userFile << endl;
     }
 
-
-  cout << gen << endl;
-  outFile << gen << endl;
-  for(int i = 1; i < rowDimension+1; ++i)
-  {
-    for(int j = 1; j < columnDimension+1; ++j)
-    {
-      cout << nextGrid[i][j];
-      outFile << nextGrid[i][j];
-    }
-  cout << endl;
-  outFile << endl;
-  }
-
-
-  // cout << "new current grid"<< endl;;
-  // //copy the next grid into the current grid, the boundary will always stay -
-    for(int i = 0; i < rowDimension+2; ++i)
-    {
-      for(int j = 0; j < columnDimension+2; ++j)
+    // //copy the next grid into the current grid, the boundary will always stay -
+      for(int i = 0; i < rowDimension+2; ++i)
       {
-        currentGrid[i][j] = nextGrid[i][j];
-
+        for(int j = 0; j < columnDimension+2; ++j)
+        {
+          currentGrid[i][j] = nextGrid[i][j];
+        }
       }
+      gen++;
     }
-    gen++;
+    }
+    userFile.close();
   }
-  }
-  outFile.close();
-}
 
 //might not even need the methods
 void Simulation::update(){
@@ -352,7 +370,7 @@ void Simulation::conductPause()
 {
   if(briefPauseBool)
   {
-    system("pause");
+    this_thread::sleep_for(chrono::seconds(1));
   }
 
   else if(enterPauseBool)
@@ -361,10 +379,6 @@ void Simulation::conductPause()
     getchar();
   }
 
-  if(outToFile)
-  {
-    userFile << "hello" << endl;
-  }
 
 
 }

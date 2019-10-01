@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -23,9 +25,9 @@ class Simulation
     int differenceCounter;
     char briefPause;
     char enterPause;
+    char outToFile;
     bool briefPauseBool;
     bool enterPauseBool;
-    bool outToFile;
     string userFileName;
 
   private:

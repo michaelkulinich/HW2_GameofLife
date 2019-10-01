@@ -8,7 +8,9 @@ FileHelper::FileHelper(string fileName)
   inputFile = fileName;
 
 }
-
+//
+//
+//
 void FileHelper::setGrid()
 {
   string line;
@@ -18,7 +20,7 @@ void FileHelper::setGrid()
 
   if(!inFile)
   {
-    cout << "unable to open file: " << inputFile;
+    cout << "unable to open file: " << inputFile << endl;
     exit(1);
   }
 
