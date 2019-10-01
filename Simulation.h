@@ -5,6 +5,22 @@
 
 using namespace std;
 
+/*Michael Kulinich
+2328386
+kulinich@chapman.edu
+Matthew Nwerem
+2277158
+nwere100@mail.chapman.edu
+
+
+Simulation.h
+This is header file for the Simulation class that will take in grids of
+inputted dimenions and run the Game of Life. Different methods contained in
+this class update the current and next game board, update the board depending
+on the type of board desired and conduct the type of pause that the user wanted
+*/
+
+
 class Simulation
 {
   public:
