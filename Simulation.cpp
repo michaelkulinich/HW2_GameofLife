@@ -230,10 +230,10 @@ void Simulation::run()
   else
   {
     //code for mirror
-    currentGrid[0][columnDimension+1] = currentGrid[rowDimension][1];
-    currentGrid[0][0] = currentGrid[rowDimension][columnDimension];
-    currentGrid[rowDimension+1][0] = currentGrid[1][columnDimension];
-    currentGrid[rowDimension+1][columnDimension+1] = currentGrid[1][1];
+    currentGrid[0][columnDimension+1] = currentGrid[1][columnDimension];
+    currentGrid[0][0] = currentGrid[1][1];
+    currentGrid[rowDimension+1][0] = currentGrid[rowDimension][1];
+    currentGrid[rowDimension+1][columnDimension+1] = currentGrid[rowDimension][columnDimension];
 
     //set boudary for column
     for(int i = 1; i < rowDimension+1;++i)
@@ -296,6 +296,12 @@ void Simulation::run()
           currentGrid[i][j] = nextGrid[i][j];
         }
       }
+
+      //code for mirror
+      currentGrid[0][columnDimension+1] = currentGrid[1][columnDimension];
+      currentGrid[0][0] = currentGrid[1][1];
+      currentGrid[rowDimension+1][0] = currentGrid[rowDimension][1];
+      currentGrid[rowDimension+1][columnDimension+1] = currentGrid[rowDimension][columnDimension];
       gen++;
     }
     }
