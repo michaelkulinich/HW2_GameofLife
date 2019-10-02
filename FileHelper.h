@@ -1,7 +1,9 @@
 /*Michael Kulinich
 2328386
 kulinich@chapman.edu
-Matt Nwerem
+Matthew Nwerem
+2277158
+nwere100@mail.chapman.edu
 
 
 FileHelper.h
