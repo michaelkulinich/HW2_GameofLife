@@ -130,9 +130,9 @@ void Simulation::run()
     //prints to console
     if(outToFile != 'Y'){
       cout << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               cout << currentGrid[i][j];
           }
@@ -141,9 +141,9 @@ void Simulation::run()
     }
     else {
       userFile << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               userFile << currentGrid[i][j];
           }
@@ -170,9 +170,9 @@ void Simulation::run()
       }
       if(outToFile != 'Y'){
         cout << "generation " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 cout << currentGrid[i][j];
             }
@@ -181,9 +181,9 @@ void Simulation::run()
       }
       else {
         userFile << "generation " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 userFile << currentGrid[i][j];
             }
@@ -237,9 +237,9 @@ void Simulation::run()
 
     if(outToFile != 'Y'){
       cout << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               cout << currentGrid[i][j];
           }
@@ -248,9 +248,9 @@ void Simulation::run()
     }
     else {
       userFile << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               userFile << currentGrid[i][j];
           }
@@ -279,9 +279,9 @@ void Simulation::run()
 
       if(outToFile != 'Y'){
         cout << "generation number " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 cout << currentGrid[i][j];
             }
@@ -290,9 +290,9 @@ void Simulation::run()
       }
       else {
         userFile << "generation number " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 userFile << currentGrid[i][j];
             }
@@ -300,10 +300,6 @@ void Simulation::run()
         }
       }
 
-
-
-    // cout << "new current grid"<< endl;;
-    // //copy the next grid into the current grid, the boundary will always stay -
       for(int i = 0; i < rowDimension+2; ++i)
       {
         for(int j = 0; j < columnDimension+2; ++j)
@@ -343,9 +339,9 @@ void Simulation::run()
 
     if(outToFile != 'Y'){
       cout << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               cout << currentGrid[i][j];
           }
@@ -354,9 +350,9 @@ void Simulation::run()
     }
     else {
       userFile << 0 << endl;
-      for(int i = 1; i < rowDimension+2; ++i)
+      for(int i = 1; i < rowDimension+1; ++i)
         {
-          for(int j = 1; j < columnDimension+2; ++j)
+          for(int j = 1; j < columnDimension+1; ++j)
           {
               userFile << currentGrid[i][j];
           }
@@ -385,9 +381,9 @@ void Simulation::run()
 
       if(outToFile != 'Y'){
         cout << "generation " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 cout << currentGrid[i][j];
             }
@@ -396,9 +392,9 @@ void Simulation::run()
       }
       else {
         userFile << "generation " << gen << endl;
-        for(int i = 1; i < rowDimension+2; ++i)
+        for(int i = 1; i < rowDimension+1; ++i)
           {
-            for(int j = 1; j < columnDimension+2; ++j)
+            for(int j = 1; j < columnDimension+1; ++j)
             {
                 userFile << currentGrid[i][j];
             }
