@@ -1,11 +1,9 @@
 # GameofLife
 
-#### Michael Kulinich
-#### 2328386
-#### kulinich@chapman.edu
-#### Matthew Nwerem
-#### 2277158
-#### nwere100@mail.chapman.edu
+- Michael Kulinich
+- kulinich@chapman.edu
+- Matthew Nwerem
+- nwere100@mail.chapman.edu
 
 ## Description
 The game of Life was designed in the 1970s by the mathematician J.H. Conway. The game gained popularity after appearing in a Scientific American article, and took the computing world by storm. The game is a simulation that models the life cycle of bacteria, providing entertainment wrapped up in what some would call mathematical elegance. (For some history on the game, as well as the rise of computing in general, Hackers, by S. Levy.)
